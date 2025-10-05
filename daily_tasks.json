@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Full body light workout",
+    "desc": "10 squats, 10 push-ups, 30s plank, 5 min walk"
+  },
+  {
+    "title": "Cardio & movement",
+    "desc": "20 min brisk walk or light jog; 5 min stretching"
+  },
+  {
+    "title": "Mobility & balance",
+    "desc": "Ankle rolls, hip circles, single-leg stands, 10 lunges each leg"
+  },
+  {
+    "title": "Upper body strength",
+    "desc": "Push-ups, chair dips, shoulder shrugs, 2 sets each"
+  },
+  {
+    "title": "Lower body focus",
+    "desc": "Squats, calf raises, lunges, 2 sets each"
+  },
+  {
+    "title": "Core & posture",
+    "desc": "Planks, dead bugs, back extensions; focus on breathing"
+  },
+  {
+    "title": "Active recovery",
+    "desc": "Gentle walk, full-body stretch, focus on slow breathing"
+  }
+]
