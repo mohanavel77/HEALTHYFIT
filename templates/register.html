@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST" class="form">
+  <label>Name<input name="name" required></label>
+  <label>WhatsApp Phone (include country code, e.g. +91xxxxxxxxxx)<input name="phone" required></label>
+  <label>Email (optional)<input name="email"></label>
+  <label>Age<input name="age" type="number"></label>
+  <label>Gender<select name="gender"><option value="">Prefer not to say</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+  <label>Reminder times (comma separated HH:MM) <input name="reminder_times" placeholder="08:00,20:00"></label>
+  <button class="btn" type="submit">Register & Continue</button>
+</form>
+{% endblock %}

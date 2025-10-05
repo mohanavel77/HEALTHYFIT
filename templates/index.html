@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Welcome to HealthFit</h1>
+  <p>A simple responsive Health & Fitness tracker with chat guidance, calorie tools and reminders.</p>
+  <div class="buttons">
+    <a class="btn" href="{{ url_for('health') }}">Health Section</a>
+    <a class="btn" href="{{ url_for('fitness') }}">Fitness Section</a>
+  </div>
+</section>
+{% endblock %}

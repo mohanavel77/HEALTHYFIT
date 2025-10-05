@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Fitness Section</h2>
+<div class="card">
+  <h3>Manual Note Tracker</h3>
+  <form action="{{ url_for('add_workout') }}" method="post" class="form">
+    <label>Title<input name="title" required></label>
+    <label>Notes<textarea name="notes"></textarea></label>
+    <button class="btn" type="submit">Save Note</button>
+  </form>
+</div>
+<div class="card">
+  <h3>Daily Task (changes automatically)</h3>
+  <div id="dailyTask"></div>
+  <script>
+    async function loadTask(){
+      const r = await fetch('/daily_task');
+      const task = await r.json();
+      document.getElementById('dailyTask').innerHTML = `<h4>${task.title}</h4><p>${task.desc}</p>`;
+    }
+    loadTask();
+  </script>
+</div>
+{% endblock %}

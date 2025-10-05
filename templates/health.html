@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Health Section</h2>
+<div class="card">
+  <h3>AI Chatbox</h3>
+  <div id="chatbox" class="chatbox"></div>
+  <form id="chatForm">
+    <input id="chatInput" placeholder="Ask about a food or ask for advice...">
+    <button class="btn" type="submit">Send</button>
+  </form>
+</div>
+<div class="card">
+  <h3>Calorie Calculator</h3>
+  <p>Enter calories per 100g and grams consumed</p>
+  <label>Calories per 100g<input id="cal100" type="number" value="100"></label>
+  <label>Grams consumed<input id="grams" type="number" value="100"></label>
+  <button class="btn" id="calcBtn">Calculate</button>
+  <p id="calResult"></p>
+</div>
+<div class="card">
+  <h3>Tablet Reminder</h3>
+  <p>Set reminder times in profile (registered WhatsApp number). This demo shows scheduled reminders in server logs. To enable real WhatsApp reminders, configure Twilio credentials in .env and uncomment Twilio code in app.py.</p>
+</div>
+<script>
+  document.getElementById('calcBtn').onclick = () => {
+    const cal100 = parseFloat(document.getElementById('cal100').value||0);
+    const grams = parseFloat(document.getElementById('grams').value||0);
+    const result = (cal100/100)*grams;
+    document.getElementById('calResult').innerText = `Estimated calories: ${result.toFixed(1)} kcal`;
+  };
+  const chatForm = document.getElementById('chatForm');
+  const chatbox = document.getElementById('chatbox');
+  chatForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const text = document.getElementById('chatInput').value;
+    if(!text) return;
+    const userDiv = document.createElement('div'); userDiv.className='bubble user'; userDiv.innerText = text; chatbox.appendChild(userDiv);
+    document.getElementById('chatInput').value='';
+    const resp = await fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text})});
+    const data = await resp.json();
+    const botDiv = document.createElement('div'); botDiv.className='bubble bot'; botDiv.innerText = data.reply; chatbox.appendChild(botDiv);
+    chatbox.scrollTop = chatbox.scrollHeight;
+  });
+</script>
+{% endblock %}

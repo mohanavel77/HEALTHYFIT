@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<div class="card">
+  <h3>Account</h3>
+  <p>Name: {{ user['name'] }}</p>
+  <p>Phone: {{ user['phone'] }}</p>
+  <p>Age: {{ user['age'] }} Gender: {{ user['gender'] }}</p>
+</div>
+<div class="card">
+  <h3>Progress</h3>
+  <p>Total workouts logged: {{ total_workouts }}</p>
+  <p>Total foods logged: {{ total_foods }}</p>
+  <canvas id="progressChart" width="400" height="150"></canvas>
+</div>
+<div class="card">
+  <h3>Quick Add</h3>
+  <form action="{{ url_for('add_workout') }}" method="post" class="inline-form">
+    <input name="title" placeholder="Workout title" required>
+    <input name="notes" placeholder="Notes">
+    <button class="btn" type="submit">Add Workout</button>
+  </form>
+  <form action="{{ url_for('add_food') }}" method="post" class="inline-form">
+    <input name="name" placeholder="Food name" required>
+    <input name="calories" placeholder="kcal" required>
+    <input name="unit" placeholder="unit (e.g. 100g)">
+    <button class="btn" type="submit">Add Food</button>
+  </form>
+</div>
+<script>
+  const ctx = document.getElementById('progressChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Workouts','Foods'],
+      datasets: [{ label: 'Count', data: [{{ total_workouts }}, {{ total_foods }}] }]
+    }
+  });
+</script>
+{% endblock %}
